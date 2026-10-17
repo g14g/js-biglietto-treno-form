@@ -16,7 +16,15 @@ body {
 }
 
 h1,
-h2 {
+h2,
+h3 {
     font-family: "Poppins", sans-serif;
+    font-weight: 700;
+}
+
+.output-prezzo span {
+    /* color: #ffffff; */
+    color: goldenrod;
+    font-size: clamp(1.5rem, 1.1rem + 0.75vw, 1.75rem);
     font-weight: 700;
 }

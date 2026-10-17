@@ -22,10 +22,21 @@
             <div class="row my-12">
                 <div class="col-12">
                     <h2>Inserimento Dati</h2>
+                </div>
+                <div class="col-12">
                     <form class="row gy-6 gx-3 align-items-center">
                         <div class="col-auto">
-                            <label class="form-label fg-2" for="kmInput">Kilometri da percorrere</label>
-                            <input type="number" class="form-control" id="kmInput" min="0" value="0" placeholder="0" autocomplete="off" required />
+                            <label class="form-label fg-3" for="inputKm">Kilometri da percorrere</label>
+                            <input type="number" class="form-control" id="inputKm" min="0" value="0" placeholder="0" autocomplete="off" required />
+                        </div>
+                        <div class="col-auto">
+                            <label for="inputFasciaEta" class="form-label fg-3">Fascia di età</label>
+                            <select class="form-control" id="inputFasciaEta" autocomplete="off" required>
+                                <option value="">Seleziona fascia...</option>
+                                <option value="minorenni">Minorenni</option>
+                                <option value="maggiorenni">Maggiorenni</option>
+                                <option value="over65">Over 65</option>
+                            </select>
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn-solid theme-primary" id="btnCalcola">Calcola</button>
@@ -36,10 +47,20 @@
             </div>
             <div class="row my-12">
                 <div class="col-12">
-                    <form action=""></form>
-                </div>
-                <div class="col-12">
                     <h2>Biglietto</h2>
+                </div>
+                <div class="col-4">
+                    <h3>Prezzo finale</h3>
+                    <p class="output-prezzo prezzo-finale fg-3"></p>
+                </div>
+                <div class="col-4">
+                    <p></p>
+                </div>
+                <div class="col-4">
+                    <p></p>
+                </div>
+                <div class="col-4">
+                    <p></p>
                 </div>
             </div>
         </div>

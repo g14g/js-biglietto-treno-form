@@ -20,47 +20,71 @@
                 </div>
             </div>
             <div class="row my-12">
-                <div class="col-12">
+                <div class="col-12 mb-6">
                     <h2>Inserimento Dati</h2>
                 </div>
                 <div class="col-12">
                     <form class="row gy-6 gx-3 align-items-center">
                         <div class="col-auto">
+                            <label for="inputNome" class="form-label fg-3">Nome</label>
+                            <input type="text" class="form-control" id="inputNome" placeholder="Nome" autocomplete="off" required />
+                        </div>
+                        <div class="col-auto">
+                            <label for="inputCognome" class="form-label fg-3">Cognome</label>
+                            <input type="text" class="form-control" id="inputCognome" placeholder="Cognome" autocomplete="off" required />
+                        </div>
+                        <div class="col-auto">
                             <label class="form-label fg-3" for="inputKm">Kilometri da percorrere</label>
-                            <input type="number" class="form-control" id="inputKm" min="0" value="0" placeholder="0" autocomplete="off" required />
+                            <label class="form-control form-adorn">
+                                <span class="form-adorn-text fg-3" aria-hidden="true">Km</span>
+                                <input type="number" class="form-ghost" id="inputKm" min="0" value="" placeholder="0" autocomplete="off" required />
+                            </label>
                         </div>
                         <div class="col-auto">
                             <label for="inputFasciaEta" class="form-label fg-3">Fascia di età</label>
                             <select class="form-control" id="inputFasciaEta" autocomplete="off" required>
                                 <option value="">Seleziona fascia...</option>
-                                <option value="minorenni">Minorenni</option>
-                                <option value="maggiorenni">Maggiorenni</option>
-                                <option value="over65">Over 65</option>
+                                <option value="Minorenni">Minorenni</option>
+                                <option value="Maggiorenni">Maggiorenni</option>
+                                <option value="Over 65">Over 65</option>
                             </select>
                         </div>
                         <div class="col-12">
-                            <button type="submit" class="btn-solid theme-primary" id="btnCalcola">Calcola</button>
+                            <button type="submit" class="btn-solid theme-warning" id="btnCalcola">Calcola</button>
                             <button type="reset" class="btn-solid theme-secondary" id="btnReset">Reset</button>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="row my-12">
-                <div class="col-12">
+                <div class="col-12 mb-6">
                     <h2>Biglietto</h2>
                 </div>
-                <div class="col-4">
-                    <h3>Prezzo finale</h3>
-                    <p class="output-prezzo prezzo-finale fg-3"></p>
-                </div>
-                <div class="col-4">
-                    <p></p>
-                </div>
-                <div class="col-4">
-                    <p></p>
-                </div>
-                <div class="col-4">
-                    <p></p>
+                <div class="row gx-6">
+                    <div class="col-auto">
+                        <div class="p-6 border rounded-6 h-auto">
+                            <h3 class="fg-3">Nome viaggiatore</h3>
+                            <p class="output nome-viaggiatore m-0">&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="p-6 border rounded-6 h-auto">
+                            <h3 class="fg-3">Prezzo intero</h3>
+                            <p class="output prezzo-intero text-end m-0">&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="p-6 border rounded-6 h-auto">
+                            <h3 class="fg-3">Fascia di età - Sconto</h3>
+                            <p class="output sconto-fascia-eta text-center m-0">&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="p-6 border rounded-6 h-auto">
+                            <h3 class="fg-3">Prezzo finale</h3>
+                            <p class="output prezzo-finale text-end m-0">&nbsp;</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

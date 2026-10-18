@@ -22,7 +22,7 @@ h3 {
     font-weight: 700;
 }
 
-.output-prezzo span {
+.output {
     /* color: #ffffff; */
     color: goldenrod;
     font-size: clamp(1.5rem, 1.1rem + 0.75vw, 1.75rem);

@@ -48,3 +48,15 @@ tema colori selezionato in bootstrap (warning) */
 :root {
     --bs-focus-ring-color: var(--bs-yellow-500);
 }
+
+/* Per cambiare il colore delle opzioni della select in base al tema selezionato
+(warning): la prima opzione, che di solito è quella senza valore, per essere
+intercettata deve avere il valore selected nell'html, in modo da essere
+riconosciuta dal selettore :selected (credo...) */
+select.form-control:has(option[value=""]:checked) {
+    color: var(--bs-control-fg);
+}
+
+select.form-control:has(option:not([value=""])) {
+    color: var(--bs-warning-fg);
+}

@@ -10,7 +10,7 @@ const inputCognome = document.querySelector("#inputCognome");
 const form = document.querySelector("form");
 
 // █████ OUTPUT
-const outputNome = document.querySelector("#outputNome");
+const outputErrore = document.querySelector(".errore");
 const outputNomeViaggiatore = document.querySelector(".output.nome-viaggiatore");
 const outputPrezzoIntero = document.querySelector(".output.prezzo-intero");
 const outputScontoFasciaEta = document.querySelector(".output.sconto-fascia-eta");
@@ -28,17 +28,33 @@ const calcolaSconto = (fascia) => {
     }
 };
 
-const stampaBiglietto = (nomeViaggiatore, prezzoIntero, sconto, fascia, prezzoFinale) => {
-    console.log("Stampo Biglietto...");
-    outputNomeViaggiatore.innerHTML = `${nomeViaggiatore}`;
-    outputPrezzoIntero.innerHTML = `${prezzoIntero.toFixed(2)}€`;
-    outputScontoFasciaEta.innerHTML = ` ${fascia} <span class="fg-3">-</span> ${sconto}%`;
-    outputPrezzoFinale.innerHTML = `${prezzoFinale.toFixed(2)}€`;
+const stampaBiglietto = (nome, prezzointero, sconto, fascia, prezzofinale) => {
+    console.log("Stampa Biglietto...");
+    outputNomeViaggiatore.innerHTML = `${nome}`;
+    outputPrezzoIntero.innerHTML = `${prezzointero}€`;
+    outputScontoFasciaEta.innerHTML = `${fascia} <span class="fg-3">-</span> ${sconto}%`;
+    outputPrezzoFinale.innerHTML = `${prezzofinale}€`;
+}
+
+const svuotaStampaBiglietto = (nome, prezzointero, sconto, fascia, prezzofinale) => {
+    console.log("Svuota Stampa Biglietto...");
+    outputNomeViaggiatore.innerHTML = `${nome}`;
+    outputPrezzoIntero.innerHTML = `${prezzointero}`;
+    outputScontoFasciaEta.innerHTML = `-`;
+    outputPrezzoFinale.innerHTML = `${prezzofinale}`;
 }
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
+    svuotaStampaBiglietto("-", "-", "-", "-", "-"); // Svuota Stampa Biglietto...
     const kmValue = Number(inputKm.value);
+    if (kmValue === 0) {
+        console.log("Errore! Non puoi fare un biglietto per 0 kilometri!");
+        outputErrore.innerHTML = `<span class="fg-warning">Errore!</span> Non puoi fare un biglietto per 0 kilometri!`;
+        return;
+    } else {
+        outputErrore.innerHTML = "";
+    }
     const fasciaEtaValue = inputFasciaEta.value;
     const sconto = calcolaSconto(fasciaEtaValue);
     const nome = inputNome.value;
@@ -47,9 +63,13 @@ form.addEventListener("submit", (e) => {
     console.log(`Kilometri da percorrere: ${kmValue}`);
     console.log(`Fascia d'età selezionata: ${fasciaEtaValue}`);
     console.log(`Sconto per la fascia di età "${fasciaEtaValue}": ${sconto}%`);
-    const prezzoBigliettoIntero = prezzoKm * kmValue;
-    const prezzoBigliettoFinale = prezzoBigliettoIntero - (prezzoBigliettoIntero * sconto / 100);
+    const prezzoBigliettoIntero = Number(prezzoKm * kmValue).toFixed(2);
+    const prezzoBigliettoFinale = Number(prezzoBigliettoIntero - (prezzoBigliettoIntero * sconto / 100)).toFixed(2);
     console.log(`Prezzo biglietto intero: ${prezzoBigliettoIntero}€`);
     console.log(`Prezzo biglietto scontato (${sconto}%): ${prezzoBigliettoFinale}€`);
     stampaBiglietto(nomeViaggiatore, prezzoBigliettoIntero, sconto, fasciaEtaValue, prezzoBigliettoFinale);
+});
+
+form.addEventListener("reset", (e) => {
+    svuotaStampaBiglietto("-", "-", "-", "-", "-"); // Svuota Stampa Biglietto...
 });

@@ -52,9 +52,10 @@ tema colori selezionato in bootstrap (warning) */
 /* Per cambiare il colore delle opzioni della select in base al tema selezionato
 (warning): la prima opzione, che di solito è quella senza valore, per essere
 intercettata deve avere il valore selected nell'html, in modo da essere
-riconosciuta dal selettore :selected (credo...) */
+riconosciuta dal selettore :checked (credo...) */
 select.form-control:has(option[value=""]:checked) {
-    color: var(--bs-control-fg);
+    /* color: var(--bs-control-fg); */
+    color: var(--bs-fg-3);
 }
 
 select.form-control:has(option:not([value=""])) {

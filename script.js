@@ -7,7 +7,7 @@ const inputFasciaEta = document.querySelector("#inputFasciaEta");
 const inputNome = document.querySelector("#inputNome");
 const inputCognome = document.querySelector("#inputCognome");
 // const btnCalcola = document.querySelector("#btnCalcola");
-const form = document.querySelector("form");
+const formBiglietto = document.querySelector("#formBiglietto");
 
 // █████ OUTPUT
 const outputErrore = document.querySelector(".errore");
@@ -44,13 +44,15 @@ const svuotaStampaBiglietto = (nome, prezzointero, sconto, fascia, prezzofinale)
     outputPrezzoFinale.innerHTML = `${prezzofinale}`;
 }
 
-form.addEventListener("submit", (e) => {
+formBiglietto.addEventListener("submit", (e) => {
     e.preventDefault();
     svuotaStampaBiglietto("-", "-", "-", "-", "-"); // Svuota Stampa Biglietto...
     const kmValue = Number(inputKm.value);
-    if (kmValue === 0) {
-        console.log("Errore! Non puoi fare un biglietto per 0 kilometri!");
-        outputErrore.innerHTML = `<span class="fg-warning">Errore!</span> Non puoi fare un biglietto per 0 kilometri!`;
+    if (kmValue == "" || isNaN(kmValue) || kmValue === 0) {
+        // console.log("Errore! Non puoi fare un biglietto per 0 chilometri!");
+        // outputErrore.innerHTML = `<span class="fg-warning">Errore!</span> Non puoi fare un biglietto per 0 chilometri!`;
+        console.log("Errore! Qualcosa non va nei chilometri inseriti!");
+        outputErrore.innerHTML = `<span class="fg-warning">Errore!</span> Qualcosa non va nei chilometri inseriti!`;
         return;
     } else {
         outputErrore.innerHTML = "";
@@ -60,7 +62,7 @@ form.addEventListener("submit", (e) => {
     const nome = inputNome.value;
     const cognome = inputCognome.value;
     const nomeViaggiatore = `${nome} ${cognome}`;
-    console.log(`Kilometri da percorrere: ${kmValue}`);
+    console.log(`Chilometri da percorrere: ${kmValue}`);
     console.log(`Fascia d'età selezionata: ${fasciaEtaValue}`);
     console.log(`Sconto per la fascia di età "${fasciaEtaValue}": ${sconto}%`);
     const prezzoBigliettoIntero = Number(prezzoKm * kmValue).toFixed(2);
@@ -70,6 +72,6 @@ form.addEventListener("submit", (e) => {
     stampaBiglietto(nomeViaggiatore, prezzoBigliettoIntero, sconto, fasciaEtaValue, prezzoBigliettoFinale);
 });
 
-form.addEventListener("reset", (e) => {
+formBiglietto.addEventListener("reset", (e) => {
     svuotaStampaBiglietto("-", "-", "-", "-", "-"); // Svuota Stampa Biglietto...
 });

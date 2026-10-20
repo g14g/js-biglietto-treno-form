@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row my-12">
                 <div class="col-12">
-                    <h1 class="fg-warning">Esercizio Biglietto Treno</h1>
+                    <h1 class="fg-brand">Esercizio Biglietto Treno</h1>
                 </div>
             </div>
             <div class="row my-12">
@@ -24,26 +24,26 @@
                     <h2>Inserimento Dati</h2>
                 </div>
                 <div class="col-12 mt-6">
-                    <form class="row g-6">
+                    <form id="formBiglietto" class="row g-6">
                         <div class="col-12 sm:col-6 lg:col">
                             <label for="inputNome" class="form-label fg-3">Nome</label>
-                            <input type="text" class="form-control fg-warning" id="inputNome" placeholder="Nome" autocomplete="off" required />
+                            <input type="text" class="form-control fg-brand" id="inputNome" placeholder="Nome" autocomplete="off" required />
                         </div>
                         <div class="col-12 sm:col-6 lg:col">
                             <label for="inputCognome" class="form-label fg-3">Cognome</label>
-                            <input type="text" class="form-control fg-warning" id="inputCognome" placeholder="Cognome" autocomplete="off" required />
+                            <input type="text" class="form-control fg-brand" id="inputCognome" placeholder="Cognome" autocomplete="off" required />
                         </div>
                         <div class="col lg:col-auto">
-                            <label class="form-label fg-3 text-nowrap" for="inputKm">Kilometri da percorrere</label>
+                            <label class="form-label fg-3 text-nowrap" for="inputKm">Chilometri da percorrere</label>
                             <label class="form-control form-adorn">
                                 <span class="form-adorn-text fg-3" aria-hidden="true">Km</span>
-                                <input type="number" class="form-ghost fg-warning" id="inputKm" min="0" value="" placeholder="0" autocomplete="off" required />
+                                <input type="number" class="form-ghost fg-brand" id="inputKm" min="0" value="" placeholder="0" autocomplete="off" required />
                             </label>
                         </div>
                         <div class="col lg:col-auto">
                             <label for="inputFasciaEta" class="form-label fg-3 text-nowrap">Fascia di età</label>
-                            <select class="form-control" id="inputFasciaEta" autocomplete="off" required>
-                                <option value="" selected>Seleziona fascia...</option>
+                            <select class="form-control fg-3" id="inputFasciaEta" autocomplete="off" required>
+                                <option value="" selected>Seleziona la tua fascia di età...</option>
                                 <option value="Minorenni">Minorenni</option>
                                 <option value="Maggiorenni">Maggiorenni</option>
                                 <option value="Over 65">Over 65</option>
@@ -51,10 +51,10 @@
                         </div>
                         <div class="row mt-6 gx-6 align-items-center">
                             <div class="col-auto">
-                                <button type="submit" class="btn-solid theme-warning" id="btnCalcola">Calcola</button>
+                                <button type="submit" class="btn-solid btn-brand" id="btnCalcola">Calcola</button>
                             </div>
                             <div class="col-auto">
-                                <button type="reset" class="btn-solid theme-secondary" id="btnReset">Reset</button>
+                                <button type="reset" class="btn-solid btn-outline-brand" id="btnReset">Reset</button>
                             </div>
                             <div class="col-auto">
                                 <p class="errore m-0"></p>
@@ -72,25 +72,25 @@
                         <div class="col-12 lg:col">
                             <div class="p-6 border rounded-6 h-auto">
                                 <h3 class="fg-3 text-nowrap">Nome viaggiatore</h3>
-                                <p class="output nome-viaggiatore m-0 fg-warning">-</p>
+                                <p class="output nome-viaggiatore m-0 fg-brand">-</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="p-6 border rounded-6 h-auto">
                                 <h3 class="fg-3 text-nowrap">Prezzo intero</h3>
-                                <p class="output prezzo-intero text-end m-0 fg-warning">-</p>
+                                <p class="output prezzo-intero text-end m-0 fg-brand">-</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="p-6 border rounded-6 h-auto">
                                 <h3 class="fg-3 text-nowrap">Fascia di età - Sconto</h3>
-                                <p class="output sconto-fascia-eta text-center m-0 fg-warning">-</p>
+                                <p class="output sconto-fascia-eta text-center m-0 fg-brand">-</p>
                             </div>
                         </div>
                         <div class="col">
                             <div class="p-6 border rounded-6 h-auto">
                                 <h3 class="fg-3 text-nowrap">Prezzo finale</h3>
-                                <p class="output prezzo-finale text-end m-0 fg-warning">-</p>
+                                <p class="output prezzo-finale text-end m-0 fg-brand">-</p>
                             </div>
                         </div>
                     </div>

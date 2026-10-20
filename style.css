@@ -1,3 +1,86 @@
+/* ==========================================
+1. DEFINIZIONE DEL TEMA GLOBALE (:root)
+========================================== */
+:root {
+    /* Il tuo colore di base */
+    /* --bs-brand-base: oklch(60% 0.25 300); Viola/magenta vivido */
+    --bs-brand-base: oklab(60% -0.1 0.01);
+
+    /* Varianti semantiche calcolate dal browser */
+    --bs-brand-fg: var(--bs-brand-base);
+    --bs-brand-fg-emphasis: color-mix(in oklch, var(--bs-brand-base) 85%, black);
+
+    --bs-brand-bg: var(--bs-brand-base);
+    /* Supporto light/dark automatico per lo sfondo tenue */
+    --bs-brand-bg-subtle: light-dark(color-mix(in oklch, var(--bs-brand-base) 12%, white), color-mix(in oklch, var(--bs-brand-base) 20%, black));
+    --bs-brand-border: color-mix(in oklch, var(--bs-brand-base) 40%, white);
+    --bs-brand-contrast: #ffffff; /* Testo sopra il bottone pieno */
+
+    /* ////////////////////////////// */
+
+    /* Per sovrascrivere il colore del bordo del focus sui campi del form in base al
+    tema colori selezionato in bootstrap (warning) */
+
+    /* --bs-focus-ring-color: var(--bs-yellow-500); */
+    --bs-focus-ring-color: var(--bs-brand-base);
+}
+
+/* ==========================================
+   2. IL COMPONENTE BOTTONE (.btn-brand)
+   ========================================== */
+.btn-brand {
+    /* Stato Normale: assegnazione dei token Bootstrap 6 */
+    --bs-btn-color: var(--bs-brand-contrast);
+    --bs-btn-bg: var(--bs-brand-base);
+    --bs-btn-border-color: var(--bs-brand-base);
+
+    /* Stato Hover: scurisce leggermente lo sfondo e il bordo di un 15% */
+    --bs-btn-hover-color: var(--bs-brand-contrast);
+    --bs-btn-hover-bg: color-mix(in oklch, var(--bs-brand-base) 85%, black);
+    --bs-btn-hover-border-color: color-mix(in oklch, var(--bs-brand-base) 80%, black);
+
+    /* Stato Active (al click): scurisce ancora di più (un 30%) */
+    --bs-btn-active-color: var(--bs-brand-contrast);
+    --bs-btn-active-bg: color-mix(in oklch, var(--bs-brand-base) 70%, black);
+    --bs-btn-active-border-color: color-mix(in oklch, var(--bs-brand-base) 65%, black);
+
+    /* Focus Ring (accessibilità): alone sfumato attorno al tasto */
+    --bs-btn-focus-shadow-rgb: oklch(60% 0.25 300 / 50%);
+}
+
+/* Variante Outline (.btn-outline-brand) facoltativa */
+.btn-outline-brand {
+    --bs-btn-color: var(--bs-brand-fg);
+    --bs-btn-bg: transparent;
+    --bs-btn-border-color: var(--bs-brand-fg);
+
+    --bs-btn-hover-color: var(--bs-brand-contrast);
+    --bs-btn-hover-bg: var(--bs-brand-base);
+    --bs-btn-hover-border-color: var(--bs-brand-base);
+
+    --bs-btn-active-color: var(--bs-brand-contrast);
+    --bs-btn-active-bg: color-mix(in oklch, var(--bs-brand-base) 85%, black);
+    --bs-btn-active-border-color: color-mix(in oklch, var(--bs-brand-base) 85%, black);
+}
+
+/* ==========================================
+   3. ALTRE UTILITY UTILI (Es: Alert, Badge, Testi)
+   ========================================== */
+.fg-brand {
+    color: var(--bs-brand-fg) !important;
+}
+.bg-brand {
+    background-color: var(--bs-brand-bg) !important;
+}
+.bg-brand-subtle {
+    background-color: var(--bs-brand-bg-subtle) !important;
+}
+.border-brand {
+    border-color: var(--bs-brand-border) !important;
+}
+
+/* ////////////////////////////// */
+
 /* * {
     margin: 0;
     padding: 0;
@@ -8,6 +91,8 @@ html,
 body {
     height: 100%;
 } */
+
+/* ////////////////////////////// */
 
 body {
     font-family: "Inter", sans-serif;
@@ -32,32 +117,64 @@ h3 {
     letter-spacing: -0.075rem;
 }
 
-/* .errore span {
-
-} */
-
-.output {
-    /* color: #ffffff; */
-    /* color: var(--bs-yellow-500); */
-    font-size: clamp(1.5rem, 1.1rem + 0.75vw, 1.75rem);
-    font-weight: 700;
+.errore span {
+    color: var(--bs-brand-fg);
 }
 
-/* Per sovrascrivere il colore del bordo del focus sui campi del form in base al
-tema colori selezionato in bootstrap (warning) */
-:root {
-    --bs-focus-ring-color: var(--bs-yellow-500);
+.output {
+    font-size: clamp(1.5rem, 1.1rem + 0.75vw, 1.75rem);
+    font-weight: 700;
 }
 
 /* Per cambiare il colore delle opzioni della select in base al tema selezionato
 (warning): la prima opzione, che di solito è quella senza valore, per essere
 intercettata deve avere il valore selected nell'html, in modo da essere
-riconosciuta dal selettore :checked (credo...) */
+riconosciuta dal selettore :checked (credo...) in Crome mi dava il problema di
+colorare tutte le opzioni della tendina quando selezionavo una delle opzioni con
+valore che volevo colorare. A seguire le soluzioni e correzioni di Gemini: */
+
+/* Soluzione 1: Correzione del selettore :has()
+Aggiungi semplicemente il
+modificatore :checked nel secondo selettore per verificare cosa l'utente ha
+effettivamente selezionato, e indica esplicitamente il colore di default per le
+option per bloccare l'ereditarietà selvaggia di Chrome quando la tendina si
+apre. */
+
+/* Quando è selezionata l'opzione vuota (placeholder) */
 select.form-control:has(option[value=""]:checked) {
-    /* color: var(--bs-control-fg); */
     color: var(--bs-fg-3);
 }
 
-select.form-control:has(option:not([value=""])) {
-    color: var(--bs-warning-fg);
+/* Quando è selezionata un'opzione che NON è vuota */
+select.form-control:has(option:not([value=""]):checked) {
+    /* color: var(--bs-warning-fg); */
+    color: var(--bs-brand-fg);
 }
+
+/* Forza le opzioni dentro la tendina a mantenere il colore base (risolve
+problema in Chrome, dove tutti gli elementi della tendina venivano colorati con
+--bs-warning-fg quando si selezionava una delle 3 opzioni) */
+select.form-control option {
+    color: var(--bs-fg-3);
+}
+
+/* Soluzione 2: Sfruttare l'attributo required (Consigliata)
+Dato che il tuo <select> ha già l'attributo required, puoi evitare del tutto la
+complessità di :has(). Quando l'opzione con value="" è selezionata, il browser
+considera il campo come :invalid. Quando viene scelta un'altra opzione valida,
+il campo diventa :valid. */
+
+/* Stato iniziale (placeholder attivo) */
+/* select.form-control:invalid {
+    color: var(--bs-fg-3);
+} */
+
+/* Stato post-selezione (opzione reale attiva) */
+/* select.form-control:valid {
+    color: var(--bs-warning-fg);
+} */
+
+/* Ripristina il colore standard dentro la tendina su Chrome */
+/* select.form-control option {
+    color: var(--bs-fg-3);
+} */
